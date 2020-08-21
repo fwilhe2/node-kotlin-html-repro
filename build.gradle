@@ -1,0 +1,44 @@
+plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.4.0'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "https://kotlin.bintray.com/kotlinx"
+    }
+}
+
+kotlin {
+    js {
+        nodejs()
+        browser()
+        binaries.executable()
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation kotlin('stdlib-common')
+                implementation("org.jetbrains.kotlinx:kotlinx-html-js:0.7.1")
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation kotlin('test-common')
+                implementation kotlin('test-annotations-common')
+            }
+        }
+    }
+}
+kotlin {
+    js {
+        nodejs {
+        }
+        binaries.executable()
+    }
+}
